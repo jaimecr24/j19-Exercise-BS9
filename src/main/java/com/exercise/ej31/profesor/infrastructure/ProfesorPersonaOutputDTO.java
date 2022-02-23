@@ -14,6 +14,10 @@ public class ProfesorPersonaOutputDTO extends PersonaOutputDTO {
     private String comments;
     private String branch;
 
+    public ProfesorPersonaOutputDTO() {
+        super();
+    }
+
     public ProfesorPersonaOutputDTO(Profesor profesor){
         super(profesor.getPersona());
         // Specific data like professor

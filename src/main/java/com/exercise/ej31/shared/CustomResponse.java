@@ -1,5 +1,6 @@
 package com.exercise.ej31.shared;
 
+import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,5 +23,12 @@ public class CustomResponse extends ResponseEntityExceptionHandler {
     public final ResponseEntity<CustomError> handleUnprocesableException(UnprocesableException ex, WebRequest request) {
         CustomError customError = new CustomError(new Date(), HttpStatus.UNPROCESSABLE_ENTITY.value(), ex.getMessage());
         return new ResponseEntity<>(customError, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(FeignException.NotFound.class)
+    public final ResponseEntity<CustomError> handleFeignNotFoundException(FeignException.NotFound ex, WebRequest request) {
+        String m = "NotFoundException on "+ex.request().url();
+        CustomError customError = new CustomError(new Date(), ex.status(), m);
+        return new ResponseEntity<>(customError, HttpStatus.NOT_FOUND);
     }
 }

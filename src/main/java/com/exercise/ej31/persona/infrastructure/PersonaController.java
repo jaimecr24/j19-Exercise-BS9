@@ -3,13 +3,13 @@ package com.exercise.ej31.persona.infrastructure;
 import com.exercise.ej31.IFeignServer;
 import com.exercise.ej31.persona.application.IPersona;
 import com.exercise.ej31.profesor.infrastructure.ProfesorPersonaOutputDTO;
+import com.exercise.ej31.shared.NotFoundException;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/persona")

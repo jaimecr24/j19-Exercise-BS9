@@ -1,5 +1,6 @@
 package com.exercise.ej31.persona.infrastructure;
 
+import com.exercise.ej31.IFeignServer;
 import com.exercise.ej31.persona.application.IPersona;
 import com.exercise.ej31.profesor.infrastructure.ProfesorPersonaOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class PersonaController {
 
     @Autowired
     IPersona personaService;
+
+    @Autowired
+    IFeignServer feignServer;
 
     @GetMapping
     public ResponseEntity<PersonaListaOutputDTO> findAll(
@@ -43,7 +47,8 @@ public class PersonaController {
     @GetMapping("/profesor/{id}")
     public ResponseEntity<ProfesorPersonaOutputDTO> getProfesor(@PathVariable String id)
     {
-        return new RestTemplate().getForEntity("http://localhost:8081/profesor/"+id,ProfesorPersonaOutputDTO.class);
+        return feignServer.callServer(id);
+        //return new RestTemplate().getForEntity("http://localhost:8081/profesor/"+id,ProfesorPersonaOutputDTO.class);
     }
 
     @PostMapping

@@ -22,6 +22,8 @@ public class PersonaOutputDTO extends OutputDTO {
     private String imagen_url;
     private Date termination_date;
 
+    public PersonaOutputDTO() {}
+
     public PersonaOutputDTO(Persona persona){
         super();
         this.id_persona = persona.getId_persona();

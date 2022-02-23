@@ -1,4 +1,4 @@
-package com.exercise.ej31;
+package com.exercise.ej31.shared;
 
 import com.exercise.ej31.profesor.infrastructure.ProfesorPersonaOutputDTO;
 import org.springframework.cloud.openfeign.FeignClient;
